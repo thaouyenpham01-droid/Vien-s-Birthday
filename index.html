@@ -1,44 +1,297 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>Birthday</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding-top: 120px;
-      background: #fff5f8;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Tố Viên 🎂</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap');
 
-    a {
-      font-size: 28px;
-      color: #ff2f75;
-      text-decoration: none;
-      font-weight: bold;
-      cursor: pointer;
-    }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    #message {
-      display: none;
-      margin-top: 40px;
-      font-size: 46px;
-      font-weight: bold;
-      color: #ff1493;
-    }
-  </style>
+  body {
+    font-family: 'Quicksand', sans-serif;
+    background: #0d0d1a;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  #landing {
+    text-align: center;
+    z-index: 10;
+    position: relative;
+  }
+
+  .envelope-wrap {
+    cursor: pointer;
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+    transition: transform 0.2s;
+  }
+  .envelope-wrap:hover { animation: none; transform: scale(1.08); }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .hint {
+    margin-top: 20px;
+    color: #b8a0cc;
+    font-size: 16px;
+    letter-spacing: 1px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  #birthday-screen {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 30%, #1a0a2e 0%, #0d0d1a 70%);
+    z-index: 100;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  #birthday-screen.show {
+    display: flex;
+    animation: fadeIn 0.8s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+
+  .stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+
+  .star {
+    position: absolute;
+    border-radius: 50%;
+    background: white;
+    animation: twinkle linear infinite;
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.1; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+
+  .content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .cake-emoji {
+    font-size: 72px;
+    display: block;
+    animation: bounce 1s ease infinite alternate;
+    margin-bottom: 16px;
+  }
+
+  @keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-10px); }
+  }
+
+  .big-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(36px, 8vw, 72px);
+    background: linear-gradient(135deg, #ffd700, #ff69b4, #c084fc, #60a5fa);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s linear infinite;
+    background-size: 300% 300%;
+    line-height: 1.2;
+    filter: drop-shadow(0 0 20px rgba(255,105,180,0.3));
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .name {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(48px, 12vw, 96px);
+    background: linear-gradient(135deg, #fbbf24, #f472b6, #a78bfa);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    background-size: 300% 300%;
+    animation: shimmer 2s linear infinite reverse;
+    filter: drop-shadow(0 0 30px rgba(167,139,250,0.5));
+    display: block;
+    margin: 8px 0 20px;
+  }
+
+  .subtitle {
+    color: #e0c8ff;
+    font-size: 17px;
+    letter-spacing: 2px;
+    opacity: 0.85;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .hearts { position: fixed; inset: 0; pointer-events: none; z-index: 5; }
+
+  .heart-particle {
+    position: absolute;
+    animation: rise linear infinite;
+    opacity: 0;
+  }
+
+  @keyframes rise {
+    0% { transform: translateY(100vh) scale(0.5) rotate(-20deg); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 0.8; }
+    100% { transform: translateY(-10vh) scale(1.2) rotate(20deg); opacity: 0; }
+  }
+
+  canvas#confetti {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 6;
+    width: 100%;
+    height: 100%;
+  }
+
+  .glow-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(167,139,250,0.2);
+    animation: expand 4s ease-out infinite;
+  }
+
+  @keyframes expand {
+    0% { transform: scale(0.5); opacity: 0.8; }
+    100% { transform: scale(3); opacity: 0; }
+  }
+</style>
 </head>
 <body>
 
-  <a onclick="showMessage()">Nhấp vào đây 🎁</a>
+<div id="landing">
+  <div class="envelope-wrap" onclick="reveal()">
+    <svg width="180" height="130" viewBox="0 0 160 120">
+      <defs>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+          <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <rect x="10" y="30" width="140" height="80" rx="8" fill="#2d1b4e" stroke="#9c6fd6" stroke-width="1.5" filter="url(#glow)"/>
+      <polygon points="10,30 80,78 150,30" fill="#3d2060" stroke="#9c6fd6" stroke-width="1.5"/>
+      <line x1="10" y1="110" x2="70" y2="70" stroke="#6b3fa0" stroke-width="1" opacity="0.6"/>
+      <line x1="150" y1="110" x2="90" y2="70" stroke="#6b3fa0" stroke-width="1" opacity="0.6"/>
+      <text x="80" y="62" text-anchor="middle" font-size="20" fill="#f472b6" filter="url(#glow)">🎀</text>
+      <text x="25" y="25" font-size="14" fill="#fbbf24" opacity="0.9">✦</text>
+      <text x="130" y="22" font-size="12" fill="#c084fc" opacity="0.9">✦</text>
+      <text x="145" y="55" font-size="10" fill="#60a5fa" opacity="0.7">✦</text>
+    </svg>
+  </div>
+  <p class="hint">✨ Nhấp vào phong bì để mở ✨</p>
+</div>
 
-  <div id="message">Happy Birthday Tố Viên 🎂💖</div>
+<div id="birthday-screen">
+  <div class="stars" id="stars"></div>
+  <canvas id="confetti"></canvas>
+  <div class="hearts" id="hearts"></div>
+  <div class="content">
+    <div style="position:relative;display:inline-block;">
+      <div class="glow-ring" style="width:200px;height:200px;top:50%;left:50%;margin:-100px 0 0 -100px;"></div>
+      <div class="glow-ring" style="width:200px;height:200px;top:50%;left:50%;margin:-100px 0 0 -100px;animation-delay:1.3s;"></div>
+    </div>
+    <span class="cake-emoji">🎂</span>
+    <div class="big-text">Happy Birthday</div>
+    <span class="name">Tố Viên</span>
+    <div class="subtitle">🌸 Chúc mừng sinh nhật 🌸</div>
+    <div style="margin-top:24px;color:#c4b5fd;font-size:15px;opacity:0.75;letter-spacing:1px;">
+      Mong em luôn vui vẻ và hạnh phúc 💜
+    </div>
+  </div>
+</div>
 
-  <script>
-    function showMessage() {
-      document.getElementById("message").style.display = "block";
-    }
-  </script>
+<script>
+function createStars() {
+  const container = document.getElementById('stars');
+  for (let i = 0; i < 80; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = Math.random() * 3 + 1;
+    s.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-duration:${2+Math.random()*3}s;animation-delay:${Math.random()*3}s;`;
+    container.appendChild(s);
+  }
+}
 
+function createHearts() {
+  const emojis = ['💜','🌸','✨','💫','⭐','🎀','💕'];
+  const container = document.getElementById('hearts');
+  for (let i = 0; i < 18; i++) {
+    const h = document.createElement('div');
+    h.className = 'heart-particle';
+    h.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    h.style.cssText = `left:${Math.random()*100}%;animation-duration:${5+Math.random()*6}s;animation-delay:${Math.random()*5}s;font-size:${14+Math.random()*16}px;`;
+    container.appendChild(h);
+  }
+}
+
+function startConfetti() {
+  const canvas = document.getElementById('confetti');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const colors = ['#fbbf24','#f472b6','#a78bfa','#60a5fa','#34d399','#fb7185'];
+  const pieces = [];
+  for (let i = 0; i < 120; i++) {
+    pieces.push({
+      x: Math.random()*canvas.width, y: Math.random()*canvas.height - canvas.height,
+      w: Math.random()*10+5, h: Math.random()*6+3,
+      color: colors[Math.floor(Math.random()*colors.length)],
+      vx: (Math.random()-0.5)*3, vy: Math.random()*3+1,
+      rot: Math.random()*360, vrot: (Math.random()-0.5)*6,
+    });
+  }
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p => {
+      p.x += p.vx; p.y += p.vy; p.rot += p.vrot;
+      if (p.y > canvas.height) { p.y = -10; p.x = Math.random()*canvas.width; }
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot*Math.PI/180);
+      ctx.globalAlpha = 0.85;
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+      ctx.restore();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+function reveal() {
+  document.getElementById('landing').style.display = 'none';
+  document.getElementById('birthday-screen').classList.add('show');
+  createStars(); createHearts(); startConfetti();
+}
+</script>
 </body>
 </html>
