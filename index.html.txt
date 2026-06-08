@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Xuân Thư</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Special+Elite&family=Quicksand:wght@600;700&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body {
+  min-height: 100vh;
+  background: #f0ebe0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  position: relative;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.page {
+  position:relative;
+  z-index:10;
+  width:100%;
+  max-width:430px;
+  margin:0 auto;
+  padding:30px 20px 50px;
+}
+
+.hb-title {
+  position:relative;
+  text-align:left;
+  margin-bottom:12px;
+  padding-left:8px;
+}
+
+.hb-happy {
+  font-family:'Permanent Marker',cursive;
+  font-size:clamp(36px,10vw,52px);
+  color:#1a1a1a;
+  display:block;
+  transform:rotate(-3deg);
+  text-shadow:3px 3px 0 rgba(0,0,0,0.15);
+  letter-spacing:2px;
+}
+
+.hb-birthday {
+  font-family:'Permanent Marker',cursive;
+  font-size:clamp(38px,11vw,58px);
+  color:#1a1a1a;
+  display:block;
+  transform:rotate(-1deg);
+  text-shadow:3px 3px 0 rgba(0,0,0,0.15);
+  margin-top:-8px;
+}
+
+.hb-happy span,.hb-birthday span {
+  background:#ffe066;
+  padding:0 4px;
+  border-radius:3px;
+}
+
+.disco {
+  position:absolute;
+  top:-10px;
+  right:10px;
+  width:80px;height:80px;
+  z-index:5;
+  animation:discoBob 3s ease-in-out infinite;
+}
+@keyframes discoBob{
+  0%,100%{transform:translateY(0) rotate(-5deg);}
+  50%{transform:translateY(-8px) rotate(5deg);}
+}
+
+.camera-wrap {
+  position:relative;
+  margin:0 auto 16px;
+  width:320px;
+}
+
+.camera-body {
+  background:linear-gradient(145deg,#e8e8e8,#d0d0d0);
+  border-radius:18px;
+  padding:14px 14px 18px;
+  box-shadow:2px 2px 0 #bbb,4px 4px 0 #aaa,0 8px 30px rgba(0,0,0,0.2);
+  border:1px solid #ccc;
+}
+
+.camera-top {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:10px;
+}
+
+.camera-brand {
+  font-family:'Special Elite',serif;
+  font-size:18px;
+  font-weight:bold;
+  color:#cc0000;
+  letter-spacing:2px;
+  font-style:italic;
+}
+
+.camera-lens {
+  width:14px;height:14px;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#555,#111);
+  border:2px solid #888;
+  margin-left:auto;
+}
+
+.camera-dots{display:flex;gap:3px;}
+.camera-dot{width:5px;height:5px;border-radius:50%;background:#aaa;}
+
+.camera-screen {
+  border-radius:8px;
+  overflow:hidden;
+  border:3px solid #444;
+  position:relative;
+  background:#000;
+  aspect-ratio:3/4;
+}
+
+.camera-screen img {
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:top center;
+  display:block;
+}
+
+.camera-screen::after {
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.08) 0%,transparent 60%);
+  pointer-events:none;
+}
+
+.camera-bottom {
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  gap:6px;
+  margin-top:10px;
+}
+
+.camera-btn {
+  background:linear-gradient(145deg,#d8d8d8,#c0c0c0);
+  border-radius:50%;
+  box-shadow:1px 1px 0 #aaa,2px 2px 0 #999;
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;font-weight:700;color:#555;
+  text-align:center;line-height:1.1;
+  border:1px solid #bbb;
+}
+
+.camera-label {
+  font-family:'Special Elite',serif;
+  font-size:9px;color:#888;letter-spacing:1px;margin-right:auto;
+}
+
+.sticker{position:absolute;z-index:20;pointer-events:none;}
+.lips{top:110px;left:-15px;font-size:44px;transform:rotate(-20deg);filter:grayscale(1) contrast(1.5);opacity:0.7;}
+.spark1{top:60px;right:-5px;font-size:28px;animation:sparkSpin 3s linear infinite;}
+.spark2{bottom:120px;right:-10px;font-size:20px;animation:sparkSpin 4s linear infinite reverse;}
+@keyframes sparkSpin{to{transform:rotate(360deg);}}
+
+.plate-wrap{display:flex;justify-content:center;margin:-8px 0 14px;}
+.plate {
+  background:#cc1111;
+  border:3px solid #fff;
+  border-radius:6px;
+  padding:6px 16px;
+  box-shadow:2px 2px 0 #333,0 4px 12px rgba(0,0,0,0.2);
+  text-align:center;min-width:180px;position:relative;
+}
+.plate::before,.plate::after{content:'•';position:absolute;top:50%;transform:translateY(-50%);color:rgba(255,255,255,0.5);font-size:10px;}
+.plate::before{left:6px;}.plate::after{right:6px;}
+.plate-top{font-family:'Special Elite',serif;font-size:9px;color:rgba(255,255,255,0.8);letter-spacing:3px;text-transform:uppercase;}
+.plate-main{font-family:'Permanent Marker',cursive;font-size:22px;color:#fff;letter-spacing:2px;line-height:1.1;}
+.plate-bottom{font-family:'Special Elite',serif;font-size:8px;color:rgba(255,255,255,0.7);letter-spacing:2px;}
+
+.info-stack{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+.info-tape {
+  position:relative;
+  background:#fff;
+  border-radius:4px;
+  padding:12px 16px;
+  box-shadow:2px 2px 8px rgba(0,0,0,0.12);
+  transform:rotate(-1deg);
+  border-left:5px solid #ff69b4;
+}
+.info-tape:nth-child(2){transform:rotate(0.8deg);border-left-color:#ffd700;}
+.info-tape:nth-child(3){transform:rotate(-0.5deg);border-left-color:#cc1111;}
+.info-tape::before{content:'';position:absolute;top:-8px;left:20px;width:50px;height:16px;background:rgba(255,230,100,0.6);border-radius:2px;transform:rotate(-2deg);}
+.tape-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#999;margin-bottom:3px;}
+.tape-value{font-size:14px;color:#222;font-weight:700;line-height:1.4;}
+
+.wish-box {
+  background:#fffbe6;
+  border:2px dashed #ffd700;
+  border-radius:12px;
+  padding:14px 18px;
+  font-size:14px;color:#5a4000;
+  line-height:1.8;font-weight:600;
+  text-align:center;position:relative;
+  margin-bottom:16px;transform:rotate(0.5deg);
+  box-shadow:2px 2px 8px rgba(0,0,0,0.08);
+}
+.wish-box::before{content:'💌';position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:22px;}
+
+.bottom-strip{background:#1a1a1a;border-radius:30px;padding:10px 20px;text-align:center;font-size:22px;letter-spacing:8px;animation:bounce 2s ease-in-out infinite;}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+
+.floaters{position:fixed;inset:0;pointer-events:none;z-index:1;}
+.floater{position:absolute;font-size:20px;animation:floatRise linear infinite;opacity:0;}
+@keyframes floatRise{
+  0%{transform:translateY(100vh) rotate(0deg);opacity:0;}
+  10%{opacity:0.8;}90%{opacity:0.6;}
+  100%{transform:translateY(-10vh) rotate(360deg);opacity:0;}
+}
+canvas{position:fixed;inset:0;pointer-events:none;z-index:2;}
+</style>
+</head>
+<body>
+
+<div class="floaters" id="floaters"></div>
+<canvas id="confetti"></canvas>
+
+<div class="page">
+
+  <div class="sticker disco">
+    <svg viewBox="0 0 80 80" width="80" height="80">
+      <defs>
+        <radialGradient id="dg" cx="40%" cy="35%">
+          <stop offset="0%" stop-color="#fff"/>
+          <stop offset="100%" stop-color="#888"/>
+        </radialGradient>
+      </defs>
+      <circle cx="40" cy="44" r="34" fill="url(#dg)"/>
+      <g fill="none" stroke="#ccc" stroke-width="0.5" opacity="0.6">
+        <line x1="10" y1="30" x2="70" y2="30"/>
+        <line x1="8" y1="40" x2="72" y2="40"/>
+        <line x1="10" y1="50" x2="70" y2="50"/>
+        <line x1="14" y1="60" x2="66" y2="60"/>
+        <line x1="25" y1="14" x2="25" y2="74"/>
+        <line x1="35" y1="10" x2="35" y2="78"/>
+        <line x1="45" y1="10" x2="45" y2="78"/>
+        <line x1="55" y1="14" x2="55" y2="74"/>
+      </g>
+      <ellipse cx="30" cy="28" rx="8" ry="5" fill="rgba(255,255,255,0.5)" transform="rotate(-30 30 28)"/>
+      <line x1="40" y1="10" x2="40" y2="0" stroke="#888" stroke-width="1.5"/>
+    </svg>
+  </div>
+
+  <div class="hb-title">
+    <span class="hb-happy"><span>Ha</span>pPy</span>
+    <span class="hb-birthday">Birt<span>hD</span>ay</span>
+  </div>
+
+  <div class="camera-wrap">
+    <div class="sticker lips">💋</div>
+    <div class="sticker spark1">✦</div>
+    <div class="sticker spark2">✦</div>
+
+    <div class="camera-body">
+      <div class="camera-top">
+        <div class="camera-brand">Canon</div>
+        <div class="camera-dots">
+          <div class="camera-dot"></div>
+          <div class="camera-dot"></div>
+        </div>
+        <div class="camera-lens"></div>
+      </div>
+      <div class="camera-screen">
+        <!-- ĐẶT ẢNH VÀO ĐÂY -->
+        <img src="anh-xuan-thu.jpg" alt="Xuân Thư" />
+      </div>
+      <div class="camera-bottom">
+        <div class="camera-label">IMAGE STABILIZER</div>
+        <div class="camera-btn" style="width:36px;height:36px;">FUNC.<br>SET</div>
+        <div class="camera-btn" style="width:28px;height:28px;">DISP.</div>
+        <div class="camera-btn" style="width:28px;height:28px;">MENU</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="plate-wrap">
+    <div class="plate">
+      <div class="plate-top">18 · 06 · 2026 · so special</div>
+      <div class="plate-main">I ♥ THƯ</div>
+      <div class="plate-bottom">live · laugh · love</div>
+    </div>
+  </div>
+
+  <div class="info-stack">
+    <div class="info-tape">
+      <div class="tape-label">🎂 Sinh nhật</div>
+      <div class="tape-value">Nguyễn Lâm Xuân Thư · 18/06/2026</div>
+    </div>
+    <div class="info-tape">
+      <div class="tape-label">🎉 Sự kiện</div>
+      <div class="tape-value">Nhiệt Liệt Chào Mừng Tuổi Mới · Khóa 2026</div>
+    </div>
+    <div class="info-tape">
+      <div class="tape-label">📍 Quê hương</div>
+      <div class="tape-value">Người con của Lagi · Bình Thuận 🌊</div>
+    </div>
+  </div>
+
+  <div class="wish-box">
+    Chúc Thư một tuổi mới thật rực rỡ ✨<br>
+    tràn đầy yêu thương & niềm vui 🌸<br>
+    Mãi xinh đẹp, mãi tỏa sáng nhé! 💖
+  </div>
+
+  <div class="bottom-strip">🎂 🎈 🎁 🥳 🎊</div>
+
+</div>
+
+<script>
+const fl=document.getElementById('floaters');
+const items=['⭐','✨','💫','🌟','💕','🎀','🌸','💖','🎈'];
+for(let i=0;i<20;i++){
+  const f=document.createElement('div');f.className='floater';
+  f.textContent=items[Math.floor(Math.random()*items.length)];
+  const dur=7+Math.random()*8;
+  f.style.cssText='left:'+(Math.random()*100)+'%;font-size:'+(12+Math.random()*14)+'px;animation-duration:'+dur+'s;animation-delay:'+(Math.random()*dur)+'s;';
+  fl.appendChild(f);
+}
+const canvas=document.getElementById('confetti');
+const ctx=canvas.getContext('2d');
+canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+const cols=['#ff69b4','#ffd700','#ff1493','#fff','#cc1111','#ffb6d9','#ffe066'];
+const pieces=[];
+for(let i=0;i<70;i++){
+  pieces.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height-canvas.height,w:Math.random()*9+3,h:Math.random()*6+2,color:cols[Math.floor(Math.random()*cols.length)],vx:(Math.random()-0.5)*2,vy:Math.random()*1.5+0.5,rot:Math.random()*360,vrot:(Math.random()-0.5)*4});
+}
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  pieces.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;p.rot+=p.vrot;
+    if(p.y>canvas.height){p.y=-10;p.x=Math.random()*canvas.width;}
+    ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot*Math.PI/180);
+    ctx.globalAlpha=0.75;ctx.fillStyle=p.color;
+    ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore();
+  });
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
+</body>
+</html>
